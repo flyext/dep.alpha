@@ -1,0 +1,9 @@
+<ivy-module version="2.0" xmlns:e="http://ant.apache.org/ivy/extra">
+
+    <info organisation="dep.alpha" module="server"/>
+
+    <dependencies>
+        <dependency name="common" rev="latest.integration"/>
+    </dependencies>
+
+</ivy-module>
