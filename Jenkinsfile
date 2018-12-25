@@ -1,9 +1,9 @@
 pipeline {
   agent any
   stages {
-    stage('Build') {
+    stage('Run build') {
       steps {
-        build(job: 'AlphaIvy', quietPeriod: 60, wait: true)
+        build(job: 'AlphaIvy', propagate: true)
       }
     }
   }
