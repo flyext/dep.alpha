@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 -->
 
-<project xmlns:ivy="antlib:org.apache.ivy.ant" basedir="." name="modules" default="publish-local">
+<project xmlns:ivy="antlib:org.apache.ivy.ant" basedir="modules" name="modules" default="publish-local">
 
     <property file="branch.properties"/>
     <import file="${build-infrastructure.dir}/branch-build-common.xml"/>
