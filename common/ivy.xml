@@ -1,5 +1,0 @@
-<ivy-module version="2.0" xmlns:e="http://ant.apache.org/ivy/extra">
-
-    <info organisation="dep.alpha" module="common"/>
-
-</ivy-module>
