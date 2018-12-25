@@ -22,25 +22,51 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 -->
 
-<project xmlns:ivy="antlib:org.apache.ivy.ant" name="common-build-infrastructure">
-    <target name="resolve" description="Retrieve dependencies with ivy">
-        <ivy:settings/>
-        <ivy:retrieve pattern="${lib.dir}/[conf]/[artifact].[ext]" />
-    </target>
-
-    <target name="build" depends="resolve" description="Build this module">
-        <mkdir dir="target/artifacts"/>
-        <jar destfile="target/artifacts/${ivy.module}.jar" />
-    </target>
+<project xmlns:ivy="antlib:org.apache.ivy.ant"
+         xmlns:cs="antlib:com.puppycrawl.tools.checkstyle.ant"
+         name="common-build-infrastructure">
 
     <target name="clean" description="Removes all generated artifacts">
         <delete dir="target"/>
     </target>
 
-    <target name="publish-local" depends="build" description="Publish module to local repository">
-        <ivy:buildnumber organisation="${ivy.organisation}" module="${ivy.module}" revision="${module.version}" branch="${branch.name}"/>
+    <target name="build" depends="resolve" description="Build this module">
+
+        <mkdir dir="${dir.build.classes}"/>
+        <javac srcdir="${dir.src.main.java}"
+               destdir="${dir.build.classes}"
+               includeantruntime="false">
+            <src path="src"/>
+        </javac>
+
+        <mkdir dir="${artifact.dir}"/>
+        <jar destfile="${artifact.dir}/${ivy.module}.jar">
+            <fileset dir="${dir.build.classes}"/>
+            <fileset dir="${dir.src.main.resources}"/>
+        </jar>
+    </target>
+
+    <target name="checkstyle"
+            description="Generates a report of code convention violations.">
+        <cs:checkstyle config="https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/google_checks.xml"
+                       failureProperty="checkstyle.failure"
+                       failOnViolation="false">
+            <fileset dir="${dir.src.main.java}" includes="**/*.java"/>
+            <formatter type="xml" tofile="${target.dir}/checkstyle-result.xml"/>
+        </cs:checkstyle>
+    </target>
+
+    <target name="publish-local" depends="build,checkstyle" description="Publish module to local repository">
+        <ivy:buildnumber organisation="${ivy.organisation}" module="${ivy.module}" revision="${module.version}"
+                         branch="${branch.name}"/>
         <ivy:publish resolver="local" pubrevision="${ivy.new.revision}" forcedeliver="true" pubbranch="${branch.name}">
-            <artifacts pattern="target/artifacts/[artifact].[ext]" />
+            <artifacts pattern="target/artifacts/[artifact].[ext]"/>
         </ivy:publish>
     </target>
+
+    <target name="resolve" description="Retrieve dependencies with ivy">
+        <ivy:settings/>
+        <ivy:retrieve pattern="${lib.dir}/[conf]/[artifact].[ext]"/>
+    </target>
+
 </project>
