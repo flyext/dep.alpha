@@ -1,9 +1,12 @@
 pipeline {
   agent any
   stages {
-    stage('Run build') {
+    stage('Build') {
       steps {
-        build(job: 'AlphaIvy', propagate: true)
+        withAnt(installation: 'Main', jdk: 'Main') {
+          echo 'Ok'
+        }
+
       }
     }
   }
