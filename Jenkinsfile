@@ -4,7 +4,7 @@ pipeline {
     stage('Build') {
       steps {
         jobDsl(targets: 'ivyJob.groovy')
-        build 'example'
+        build 'BuildIvy'
       }
     }
   }
