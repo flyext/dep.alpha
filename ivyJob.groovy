@@ -1,4 +1,4 @@
-ivyJob('example') {
+ivyJob('BuildIvy') {
     ivyFilePattern('modules/**/ivy.xml')
     ivyFileExcludesPattern('modules/**/target/**/ivy.xml')
     ivyBuilder {
