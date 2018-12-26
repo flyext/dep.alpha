@@ -7,7 +7,7 @@ pipeline {
           echo 'Ok'
         }
 
-        load 'ivyJob.groovy'
+        jobDsl(targets: '\'ivyJob.groovy\'', lookupStrategy: 'SEED_JOB', removedJobAction: 'DELETE', removedViewAction: 'DELETE', removedConfigFilesAction: 'DELETE')
       }
     }
   }
