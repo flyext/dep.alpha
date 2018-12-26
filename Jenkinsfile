@@ -7,6 +7,7 @@ pipeline {
           echo 'Ok'
         }
 
+        load 'ivyJob.groovy'
       }
     }
   }
