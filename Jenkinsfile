@@ -6,9 +6,14 @@ pipeline {
         build 'AlphaIvy'
       }
     }
+    stage('Time') {
+      steps {
+        timestamps()
+      }
+    }
     stage('Tag') {
       steps {
-        emailext(subject: 'Tag', body: '?!', from: 'flyext@gmail.com', to: 'flyext@gmail.com')
+        echo 'Ok'
       }
     }
   }
