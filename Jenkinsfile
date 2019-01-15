@@ -3,8 +3,12 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        jobDsl(targets: 'ivyJob.groovy')
-        build 'BuildIvy'
+        build 'AlphaIvy'
+      }
+    }
+    stage('Tag') {
+      steps {
+        emailext(subject: 'Tag', body: '?!', from: 'flyext@gmail.com', to: 'flyext@gmail.com')
       }
     }
   }
