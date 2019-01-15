@@ -8,7 +8,8 @@ pipeline {
     }
     stage('Tag') {
       steps {
-
+        def timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())
+        echo 'Result:${timestamp}'
       }
     }
   }
