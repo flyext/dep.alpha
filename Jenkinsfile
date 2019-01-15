@@ -3,17 +3,17 @@ pipeline {
   stages {
     stage('Build') {
       steps {
+        def timestampBefore = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())
+        echo 'Before:${timestampBefore}'
         build 'AlphaIvy'
-      }
-    }
-    stage('Time') {
-      steps {
-        timestamps()
+        def timestampAfter = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())
+        echo 'After:${timestampAfter}'
       }
     }
     stage('Tag') {
       steps {
-        echo 'Ok'
+        def timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())
+        echo 'Result:${timestamp}'
       }
     }
   }
