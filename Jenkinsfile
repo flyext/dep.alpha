@@ -13,7 +13,7 @@ pipeline {
         script {
           def dateformat = new SimpleDateFormat("yyyyMMddHHmmss")
           def timestamp = dateformat.format(new Date())
-          echo 'Result:${timestamp}'
+          echo "Result:${timestamp}"
         }
       }
     }
