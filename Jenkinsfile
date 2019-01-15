@@ -10,9 +10,11 @@ pipeline {
     }
     stage('Tag') {
       steps {
-        def dateformat = new SimpleDateFormat("yyyyMMddHHmmss")
-        def timestamp = dateformat.format(new Date())
-        echo 'Result:${timestamp}'
+        script {
+          def dateformat = new SimpleDateFormat("yyyyMMddHHmmss")
+          def timestamp = dateformat.format(new Date())
+          echo 'Result:${timestamp}'
+        }
       }
     }
   }
