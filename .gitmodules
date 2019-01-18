@@ -1,0 +1,3 @@
+[submodule "modules/generic"]
+	path = modules/generic
+	url = https://github.com/flyext/dep.generic.git
