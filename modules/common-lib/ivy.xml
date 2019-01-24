@@ -24,4 +24,7 @@ THE SOFTWARE.
 
 <ivy-module version="2.0" xmlns:e="http://ant.apache.org/ivy/extra">
     <info organisation="hudson.ivy.example" module="common-lib"/>
+    <dependencies>
+        <dependency name="generic" rev="latest.integration"/>
+    </dependencies>
 </ivy-module>
